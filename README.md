@@ -3,7 +3,8 @@
 See the overall picture of implementations on microservices with .net tools on real-world e-commerce microservices project:
 ![Architecture](https://github.com/mahendraputra21/EShopMicroservices/assets/31196162/00c66501-98c1-4272-8ce0-f528f4f07aae)
 
-#### Catalog microservice which includes:
+## Catalog Microservice:
+![Catalog-Architecture](https://github.com/mahendraputra21/EShopMicroservices/assets/31196162/eaf99982-d2c4-4312-b1c6-08431b749614)
 
 * ASP.NET Core Minimal APIs and latest features of .NET8 and C# 12
 * **Vertical Slice Architecture** implementation with Feature folders and single .cs file includes different classes in one file
