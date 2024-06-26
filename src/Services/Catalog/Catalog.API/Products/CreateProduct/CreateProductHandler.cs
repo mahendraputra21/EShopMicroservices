@@ -19,18 +19,12 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
 }
 
 internal class CreateProductCommandHandler
-    (IDocumentSession session, IValidator<CreateProductCommand> validator)
+    (IDocumentSession session, ILogger<CreateProductCommandHandler> logger)
     : ICommandHandler<CreateProductCommand, CreateProductResult>
 {
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
-        // validate the request first by validator
-        var result = await validator.ValidateAsync(command, cancellationToken);
-        var errors = result.Errors.Select(e => e.ErrorMessage).ToList();
-        if (errors.Any()) 
-        {
-            throw new ValidationException(errors.FirstOrDefault());
-        }
+        logger.LogInformation("CreateProductCommandHandler.Handle called with {@Commnad}", command);
 
         // create Product entity from command object
         var product = new Product
@@ -42,7 +36,7 @@ internal class CreateProductCommandHandler
             Price = command.Price
         };
 
-        // Todo : save to database
+        // save to database
         session.Store(product);
         await session.SaveChangesAsync(cancellationToken);
 
