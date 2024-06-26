@@ -8,13 +8,12 @@ public class CatalogInitialData : IInitialData
     {
         using var session = store.LightweightSession();
 
-        if(await  session.Query<CatalogInitialData>().AnyAsync())
+        if(await session.Query<Product>().AnyAsync())
             return;
 
         // Marten UPSERT will cater for existing records
         session.Store(GetPreconfiguredProducts());
         await session.SaveChangesAsync();
-
     }
 
     private static IEnumerable<Product> GetPreconfiguredProducts() =>
