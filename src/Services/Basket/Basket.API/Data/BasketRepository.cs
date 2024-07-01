@@ -20,6 +20,6 @@ public class BasketRepository(IDocumentSession session)
     {
         session.Delete<ShoppingCart>(userName);
         await session.SaveChangesAsync(cancellationToken);
-        return true
+        return true;
     }
 }
